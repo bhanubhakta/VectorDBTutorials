@@ -1,3 +1,6 @@
+
+# Sagun Bhandari has very good habit of doing meditation.
+#
 # Insert operations in Milvus is asynchronous
 # Searching instantly might not provide the results
 
@@ -10,6 +13,62 @@ import random
 # To set up a collection in quick setup mode,
 # you only need to set the collection name and
 # the dimension of the vector field of the collection.
+
+
+# 2. Create a collection in quick setup mode
+# client.create_collection(
+#     collection_name="quick_setup",
+#     dimension=5
+# )
+
+# In the above setup,
+
+# The primary and vector fields use their default names(id and vector).
+# The metric type is also set to its default value(COSINE).
+# The primary field accepts integers and does not automatically increments.
+# A reserved JSON field named $meta is used to store
+# on-schema-defined fields and their values.
+
+
+# Customized setup:
+
+# To define the collection schema by yourself, use the customized setup.
+# In this manner, you can define the attributes of each field in the collection,
+# including its name, data type, and extra attributes of a specific field.
+
+# 3. Create a collection in customized setup mode
+
+# 3.1. Create schema
+
+# schema = MilvusClient.create_schema(
+#     auto_id=False,
+#     enable_dynamic_field=True,
+# )
+
+# 3.2. Add fields to schema
+# schema.add_field(field_name="my_id", datatype=DataType.INT64, is_primary=True)
+# schema.add_field(field_name="my_vector", datatype=DataType.FLOAT_VECTOR, dim=5)
+
+# 3.3. Prepare index parameters
+# index_params = client.prepare_index_params()
+
+# 3.4. Add indexes
+# index_params.add_index(
+#     field_name="my_id"
+# )
+
+# index_params.add_index(
+#     field_name="my_vector",
+#     index_type="AUTOINDEX",
+#     metric_type="IP"
+# )
+
+# 3.5. Create a collection
+# client.create_collection(
+#     collection_name="customized_setup",
+#     schema=schema,
+#     index_params=index_params
+# )
 
 client = MelvisClient().client
 
