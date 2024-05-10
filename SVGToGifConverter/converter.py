@@ -22,6 +22,7 @@ def capture_svg_frames(svg_file_path, output_dir, frame_count, delay):
 
 
 # Configure your parameters
+# Change this path
 svg_file_path = 'file:///Users/bhanusigdel/workspace/LeetCodeVideos/RAG.svg'
 output_dir = './frames'
 frame_count = 600
